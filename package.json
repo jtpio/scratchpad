@@ -5,7 +5,7 @@
   "private": true,
   "scripts": {
     "test": "galata",
-    "start": "/usr/local/bin/python3 -m jupyterlab --config ./jupyter_server_config.py",
+    "start": "python3 -m jupyterlab --config ./jupyter_server_config.py",
     "start:detached": "(yarn run start&)"
   },
   "author": "Project Jupyter",

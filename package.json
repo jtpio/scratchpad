@@ -1,0 +1,16 @@
+{
+  "name": "galata-example",
+  "version": "1.0.0",
+  "description": "Galata Example",
+  "private": true,
+  "scripts": {
+    "test": "galata",
+    "start": "/usr/local/bin/python3 -m jupyterlab --config ./jupyter_server_config.py",
+    "start:detached": "(yarn run start&)"
+  },
+  "author": "Project Jupyter",
+  "license": "BSD-3-Clause",
+  "dependencies": {
+    "@jupyterlab/galata": "3.0.3-3"
+  }
+}

@@ -1,5 +1,3 @@
-yum install sqlite-devel sqlite -y
-
 python3 -m pip install --upgrade pip jupyterlab==3.0.3
 
 which jupyterlab

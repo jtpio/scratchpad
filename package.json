@@ -1,7 +1,7 @@
 {
   "name": "galata-example",
   "version": "1.0.0",
-  "description": "Galata Example",
+  "description": "Galata Test Example",
   "private": true,
   "scripts": {
     "test": "galata",

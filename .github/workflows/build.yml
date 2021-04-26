@@ -1,0 +1,61 @@
+name: Test
+
+on:
+  push:
+    branches:
+      - '*'
+  pull_request:
+    branches: '*'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+    - name: Install node
+      uses: actions/setup-node@v2
+      with:
+       node-version: '14.x'
+    - name: Install Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.7'
+        architecture: 'x64'
+    - name: Install dependencies
+      run: |
+        python -m pip install jupyterlab~=3.0.7
+    - name: Install Galata
+      run: |
+        yarn
+    - name: Launch JupyterLab
+      run: |
+        yarn run start:detached
+    - name: Wait for JupyterLab
+      uses: ifaxity/wait-on-action@v1
+      with:
+        resource: http-get://localhost:8888/api
+        timeout: 20000
+    - name: Test
+      run: |
+        yarn run test
+
+    - name: production or not
+      id: prod_or_not
+      run: |
+        if [ "$REF" == 'refs/heads/master' ]
+        then
+            echo "::set-output name=vercel-args::--prod"
+        else
+            echo "::set-output name=vercel-args::"
+        fi
+      env:
+        REF: ${{ github.ref }}
+    - uses: amondnet/vercel-action@v20
+      with:
+        vercel-token: ${{ secrets.VERCEL_TOKEN }}
+        github-token: ${{ secrets.GITHUB_TOKEN }}
+        vercel-org-id: ${{ secrets.ORG_ID}}
+        vercel-project-id: ${{ secrets.PROJECT_ID}}
+        vercel-args: ${{ steps.prod_or_not.outputs.vercel-args }}
+        working-directory: ./test-output/test/report

@@ -6,3 +6,5 @@ node_modules/
 reference-output/
 test-output/
 yarn-error.log
+
+.vercel

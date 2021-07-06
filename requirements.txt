@@ -4,5 +4,5 @@ ipycanvas
 ipyleaflet
 jupyterlab==3.1.0b0
 jupyterlab-drawio
---pre -U jupyterlite
+--pre jupyterlite
 theme-darcula

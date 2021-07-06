@@ -1,0 +1,12 @@
+{
+  "name": "scratchpad",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Test Vercel Deployment",
+  "main": "index.js",
+  "scripts": {
+    "build": "jupyter lite build --content content"
+  },
+  "author": "",
+  "license": "ISC"
+}
